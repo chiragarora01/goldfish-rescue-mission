@@ -17,6 +17,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow: hidden;
             height: 100vh;
+            width: 100vw;
             position: relative;
             margin: 0;
             padding: 0;
@@ -161,6 +162,7 @@
             height: 100px;
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             animation: floatUp 15s ease-in-out infinite;
+            z-index: 1;
         }
 
         .balloon::after {
@@ -190,6 +192,7 @@
             position: absolute;
             color: #ff69b4;
             animation: sparkle 3s ease-in-out infinite;
+            z-index: 1;
         }
 
         @keyframes sparkle {
@@ -277,7 +280,9 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: -1;
+            z-index: 0;
+            top: 0;
+            left: 0;
         }
 
         .heart-float {
@@ -294,7 +299,19 @@
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* iPhone 15 specific */
+        /* Content wrapper for proper z-index */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Responsive adjustments */
         @media screen and (max-width: 430px) {
             h1 { font-size: 2rem; }
             h2 { font-size: 1.7rem; }
@@ -302,11 +319,10 @@
             .gif-container { width: 250px; height: 250px; }
         }
         
-        /* For shorter screens (landscape or smaller phones) */
         @media screen and (max-height: 700px) {
             .page {
                 justify-content: flex-start;
-                padding-top: 60px;
+                padding-top: 40px;
             }
             .gif-container { 
                 width: 200px; 
@@ -320,11 +336,6 @@
                 font-size: 1rem;
                 margin-top: 20px;
             }
-        }
-        
-        /* Ensure button is always visible */
-        .page > *:last-child {
-            margin-bottom: 30px;
         }
 
         @supports (padding-top: env(safe-area-inset-top)) {
@@ -343,13 +354,15 @@
         <div class="sparkle sparkle1">✨</div>
         <div class="sparkle sparkle2">⭐</div>
         
-        <h1>Hey <span class="pet-name">Goldfish</span>! 🥺</h1>
-        <h2>You Sad?</h2>
-        <div class="gif-container">
-            <img src="https://media.giphy.com/media/EvYHHSntaIl5m/giphy.gif" alt="Cute cat in car">
+        <div class="content-wrapper">
+            <h1>Hey <span class="pet-name">Goldfish</span>! 🥺</h1>
+            <h2>You Sad?</h2>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/EvYHHSntaIl5m/giphy.gif" alt="Cute cat in car">
+            </div>
+            <p>Don't worry! Your friend <span class="pet-name">Monkey</span> is racing to Janakpuri! 🚗💨</p>
+            <button class="next-btn" onclick="nextPage(2)">Here I Come! →</button>
         </div>
-        <p>Don't worry! Your friend <span class="pet-name">Monkey</span> is racing to Janakpuri! 🚗💨</p>
-        <button class="next-btn" onclick="nextPage(2)">Here I Come! →</button>
     </div>
 
     <!-- Page 2: Big Hug -->
@@ -364,15 +377,17 @@
             <div class="heart-float" style="left: 90%; animation-delay: 8s;">💕</div>
         </div>
         
-        <h2>Time for the BIGGEST hug! 🤗</h2>
-        <div class="gif-container">
-            <img src="https://media.giphy.com/media/llmZp6fCVb4ju/giphy.gif" alt="Cute bear hug">
+        <div class="content-wrapper">
+            <h2>Time for the BIGGEST hug! 🤗</h2>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/llmZp6fCVb4ju/giphy.gif" alt="Cute bear hug">
+            </div>
+            <p><span class="pet-name">Monkey</span> brought special treats for <span class="pet-name">Goldfish</span>!</p>
+            <div class="emoji-giant">🍫 🌹</div>
+            <p>Milkybar & Flowers! Because you're the sweetest! 💝</p>
+            <p style="color: #d70040; font-weight: bold;">I believe in you! You're the strongest! 💪</p>
+            <button class="next-btn" onclick="nextPage(3)">Aww Thanks! →</button>
         </div>
-        <p><span class="pet-name">Monkey</span> brought special treats for <span class="pet-name">Goldfish</span>!</p>
-        <div class="emoji-giant">🍫 🌹</div>
-        <p>Milkybar & Flowers! Because you're the sweetest! 💝</p>
-        <p style="color: #d70040; font-weight: bold;">I believe in you! You're the strongest! 💪</p>
-        <button class="next-btn" onclick="nextPage(3)">Aww Thanks! →</button>
     </div>
 
     <!-- Page 3: Head Pat -->
@@ -381,15 +396,17 @@
         <div class="sparkle sparkle4">✨</div>
         <div class="balloon balloon5"></div>
         
-        <h2>*Pat Pat Pat* 🤚</h2>
-        <div class="gif-container">
-            <img src="https://media2.giphy.com/media/ARSp9T7wwxNcs/giphy.gif" alt="Head pat">
+        <div class="content-wrapper">
+            <h2>*Pat Pat Pat* 🤚</h2>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/ARSp9T7wwxNcs/giphy.gif" alt="Head pat">
+            </div>
+            <div class="quote-bubble">
+                <p>Everything will be okay, <span class="pet-name">Goldfish</span>! 💕</p>
+            </div>
+            <p><span class="pet-name">Monkey</span> is here now! 🐒</p>
+            <button class="next-btn" onclick="nextPage(4)">I Feel Better! →</button>
         </div>
-        <div class="quote-bubble">
-            <p>Everything will be okay, <span class="pet-name">Goldfish</span>! 💕</p>
-        </div>
-        <p><span class="pet-name">Monkey</span> is here now! 🐒</p>
-        <button class="next-btn" onclick="nextPage(4)">I Feel Better! →</button>
     </div>
 
     <!-- Page 4: Chinese Food -->
@@ -401,16 +418,18 @@
             <div class="heart-float" style="left: 80%; animation-delay: 7s;">🥡</div>
         </div>
         
-        <h2>Surprise! Your favorite! 🥟</h2>
-        <div class="gif-container">
-            <img src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif" alt="Cute eating">
+        <div class="content-wrapper">
+            <h2>Surprise! Your favorite! 🥟</h2>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif" alt="Cute eating">
+            </div>
+            <p><span class="pet-name">Monkey</span> knows what makes <span class="pet-name">Goldfish</span> happy!</p>
+            <p>Chinese food time! 🍜🥢</p>
+            <div class="quote-bubble">
+                <p>I trust you completely! You're the most important! ❤️</p>
+            </div>
+            <button class="next-btn" onclick="nextPage(5)">Yummy! →</button>
         </div>
-        <p><span class="pet-name">Monkey</span> knows what makes <span class="pet-name">Goldfish</span> happy!</p>
-        <p>Chinese food time! 🍜🥢</p>
-        <div class="quote-bubble">
-            <p>I trust you completely! You're the most important! ❤️</p>
-        </div>
-        <button class="next-btn" onclick="nextPage(5)">Yummy! →</button>
     </div>
 
     <!-- Page 5: Motivation -->
@@ -420,17 +439,19 @@
         <div class="sparkle sparkle1">💫</div>
         <div class="sparkle sparkle2">⭐</div>
         
-        <h1>Hey <span class="pet-name">Goldfish</span>!</h1>
-        <h2>YOU ROCK! 🎸✨</h2>
-        <div class="gif-container">
-            <img src="https://media.giphy.com/media/kyLYXonQYYfwYDIeZl/giphy.gif" alt="You're awesome celebration">
+        <div class="content-wrapper">
+            <h1>Hey <span class="pet-name">Goldfish</span>!</h1>
+            <h2>YOU ROCK! 🎸✨</h2>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/kyLYXonQYYfwYDIeZl/giphy.gif" alt="You're awesome celebration">
+            </div>
+            <div class="quote-bubble">
+                <p>"It's just a bad day! Tomorrow you can do it!"</p>
+            </div>
+            <p><span class="pet-name">Monkey</span> believes in you! 💪💕</p>
+            <p style="color: #d70040; font-weight: bold;">Never feel down! You're amazing! 🌟</p>
+            <button class="next-btn" onclick="nextPage(6)">Thank You! →</button>
         </div>
-        <div class="quote-bubble">
-            <p>"It's just a bad day! Tomorrow you can do it!"</p>
-        </div>
-        <p><span class="pet-name">Monkey</span> believes in you! 💪💕</p>
-        <p style="color: #d70040; font-weight: bold;">Never feel down! You're amazing! 🌟</p>
-        <button class="next-btn" onclick="nextPage(6)">Thank You! →</button>
     </div>
 
     <!-- Page 6: Dinner Question -->
@@ -442,14 +463,16 @@
             <div class="heart-float" style="left: 75%; animation-delay: 6.5s;">💖</div>
         </div>
         
-        <div class="final-question">
-            <h2>So... <span class="pet-name">Goldfish</span>... 🥺</h2>
-            <p>Since you didn't let <span class="pet-name">Monkey</span> come today...</p>
-            <p style="font-size: 1.5rem; color: #ff1493; margin: 30px 0;">
-                Dinner on Monday? 🍽️✨
-            </p>
-            <button class="yes-btn" onclick="showYes()">YES! 😍</button>
-            <button class="yes-btn" onclick="showYes()">ABSOLUTELY YES! 💕</button>
+        <div class="content-wrapper">
+            <div class="final-question">
+                <h2>So... <span class="pet-name">Goldfish</span>... 🥺</h2>
+                <p>Since you didn't let <span class="pet-name">Monkey</span> come today...</p>
+                <p style="font-size: 1.5rem; color: #ff1493; margin: 30px 0;">
+                    Dinner on Monday? 🍽️✨
+                </p>
+                <button class="yes-btn" onclick="showYes()">YES! 😍</button>
+                <button class="yes-btn" onclick="showYes()">ABSOLUTELY YES! 💕</button>
+            </div>
         </div>
     </div>
 
@@ -458,14 +481,16 @@
         <div class="balloon balloon3"></div>
         <div class="sparkle sparkle3">😤</div>
         
-        <h2><span class="pet-name">Monkey</span> will be naraz! 😤</h2>
-        <p>Why didn't <span class="pet-name">Goldfish</span> call me?? 📱</p>
-        <div class="gif-container">
-            <img src="https://media3.giphy.com/media/11tTNkNy1SdXGg/giphy.gif" alt="Angry cute">
+        <div class="content-wrapper">
+            <h2><span class="pet-name">Monkey</span> will be naraz! 😤</h2>
+            <p>Why didn't <span class="pet-name">Goldfish</span> call me?? 📱</p>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/11tTNkNy1SdXGg/giphy.gif" alt="Angry cute">
+            </div>
+            <p style="font-size: 1.5rem;">Pitai hogi! 🗡️😤</p>
+            <p style="margin-top: 20px; color: #999;">(Just kidding! But seriously, call me! 🥺)</p>
+            <button class="next-btn" onclick="nextPage(8)">Sorry! →</button>
         </div>
-        <p style="font-size: 1.5rem;">Pitai hogi! 🗡️😤</p>
-        <p style="margin-top: 20px; color: #999;">(Just kidding! But seriously, call me! 🥺)</p>
-        <button class="next-btn" onclick="nextPage(8)">Sorry! →</button>
     </div>
 
     <!-- Page 8: Sorry -->
@@ -477,16 +502,18 @@
             <div class="heart-float" style="left: 80%; animation-delay: 7s;">💖</div>
         </div>
         
-        <h2>Oh wait... one more thing! 😅</h2>
-        <div class="gif-container">
-            <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Cute sorry">
+        <div class="content-wrapper">
+            <h2>Oh wait... one more thing! 😅</h2>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Cute sorry">
+            </div>
+            <p><span class="pet-name">Monkey</span> forgot to remind <span class="pet-name">Goldfish</span> for lunch! 🍱</p>
+            <p>I promise I'll set 100 alarms next time! ⏰</p>
+            <div class="quote-bubble">
+                <p>Sorry na! 🥺 Will never forget again!</p>
+            </div>
+            <button class="next-btn" onclick="nextPage(9)">It's Okay! →</button>
         </div>
-        <p><span class="pet-name">Monkey</span> forgot to remind <span class="pet-name">Goldfish</span> for lunch! 🍱</p>
-        <p>I promise I'll set 100 alarms next time! ⏰</p>
-        <div class="quote-bubble">
-            <p>Sorry!! Will never forget again!</p>
-        </div>
-        <button class="next-btn" onclick="nextPage(9)">It's Okay! →</button>
     </div>
 
     <!-- Page 9: Miss You Video -->
@@ -499,19 +526,21 @@
             <div class="heart-float" style="left: 75%; animation-delay: 4s;">💕</div>
         </div>
         
-        <h2 style="margin-bottom: 10px;">Miss you !!!! <span class="pet-name">Goldfish</span>! 🥺💕</h2>
-        <p style="color: #d70040; font-weight: bold; margin-bottom: 20px;">This is for you! 👇</p>
-        <div style="margin: 10px 0;">
-            <iframe width="280" height="500" 
-                src="https://www.youtube.com/embed/2lH6x5zn0GI" 
-                title="Our Song" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-            </iframe>
+        <div class="content-wrapper">
+            <h2 style="margin-bottom: 10px;">Miss you so much, <span class="pet-name">Goldfish</span>! 🥺💕</h2>
+            <p style="color: #d70040; font-weight: bold; margin-bottom: 20px;">This is for you! 👇</p>
+            <div style="margin: 10px 0;">
+                <iframe width="280" height="500" 
+                    src="https://www.youtube.com/embed/2lH6x5zn0GI" 
+                    title="Our Song" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                </iframe>
+            </div>
+            <button class="next-btn" onclick="restart()">Start Again! 💕</button>
         </div>
-        <button class="next-btn" onclick="restart()">Start Again! 💕</button>
     </div>
 
     <script>
@@ -568,7 +597,7 @@
 
         // Click anywhere to create hearts (except buttons)
         document.addEventListener('click', function(e) {
-            if (e.target.tagName !== 'BUTTON') {
+            if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'IFRAME') {
                 const heart = document.createElement('div');
                 heart.innerHTML = ['💕', '💖', '💗', '💝'][Math.floor(Math.random() * 4)];
                 heart.style.position = 'fixed';
