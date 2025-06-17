@@ -18,7 +18,7 @@
             overflow: hidden;
             height: 100vh;
             width: 100vw;
-            position: relative;
+            position: fixed;
             margin: 0;
             padding: 0;
         }
@@ -157,12 +157,13 @@
 
         /* Decorative elements */
         .balloon {
-            position: absolute;
+            position: fixed;
             width: 80px;
             height: 100px;
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             animation: floatUp 15s ease-in-out infinite;
             z-index: 1;
+            pointer-events: none;
         }
 
         .balloon::after {
@@ -189,10 +190,11 @@
         }
 
         .sparkle {
-            position: absolute;
+            position: fixed;
             color: #ff69b4;
             animation: sparkle 3s ease-in-out infinite;
             z-index: 1;
+            pointer-events: none;
         }
 
         @keyframes sparkle {
@@ -309,6 +311,8 @@
             justify-content: center;
             width: 100%;
             max-width: 400px;
+            min-height: 100vh;
+            padding: 20px 0 40px 0;
         }
 
         /* Responsive adjustments */
@@ -320,9 +324,12 @@
         }
         
         @media screen and (max-height: 700px) {
-            .page {
+            .content-wrapper {
+                min-height: auto;
                 justify-content: flex-start;
-                padding-top: 40px;
+            }
+            .page {
+                padding-top: 20px;
             }
             .gif-container { 
                 width: 200px; 
@@ -335,6 +342,13 @@
                 padding: 12px 35px;
                 font-size: 1rem;
                 margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .quote-bubble {
+                padding: 15px 25px;
+            }
+            .emoji-giant {
+                font-size: 3rem;
             }
         }
 
