@@ -53,6 +53,7 @@
         .page6 { background: linear-gradient(135deg, #ffaad3 0%, #ff7fbc 100%); }
         .page7 { background: linear-gradient(135deg, #ff9dcc 0%, #ff72b5 100%); }
         .page8 { background: linear-gradient(135deg, #ff90c5 0%, #ff65ae 100%); }
+        .page9 { background: linear-gradient(135deg, #ff83be 0%, #ff58a7 100%); }
 
         h1, h2 {
             color: #d70040;
@@ -428,6 +429,7 @@
             <p>"It's just a bad day! Tomorrow you can do it!"</p>
         </div>
         <p><span class="pet-name">Monkey</span> believes in you! 💪💕</p>
+        <p style="color: #d70040; font-weight: bold;">Never feel down! You're amazing! 🌟</p>
         <button class="next-btn" onclick="nextPage(6)">Thank You! →</button>
     </div>
 
@@ -476,13 +478,30 @@
         </div>
         
         <h2>Oh wait... one more thing! 😅</h2>
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Cute sorry">
+        </div>
         <p><span class="pet-name">Monkey</span> forgot to remind <span class="pet-name">Goldfish</span> for lunch! 🍱</p>
         <p>I promise I'll set 100 alarms next time! ⏰</p>
-        <div class="emoji-giant">💕</div>
-        <p style="font-size: 1.5rem; color: #d70040; font-weight: bold;">Miss you, <span class="pet-name">Goldfish</span>! 🐠💕</p>
-        <p>Sorry , aaj lunch ka puchna bhul gya tha</p>
-        <div style="margin: 20px 0;">
-            <p style="color: #d70040; font-weight: bold;">Watch this! It's us! 👇</p>
+        <div class="quote-bubble">
+            <p>Sorry!! Will never forget again!</p>
+        </div>
+        <button class="next-btn" onclick="nextPage(9)">It's Okay! →</button>
+    </div>
+
+    <!-- Page 9: Miss You Video -->
+    <div class="page page9" id="page9">
+        <div class="balloon balloon1"></div>
+        <div class="balloon balloon3"></div>
+        <div class="hearts-bg">
+            <div class="heart-float" style="left: 25%; animation-delay: 0s;">💕</div>
+            <div class="heart-float" style="left: 50%; animation-delay: 2s;">💖</div>
+            <div class="heart-float" style="left: 75%; animation-delay: 4s;">💕</div>
+        </div>
+        
+        <h2 style="margin-bottom: 10px;">Miss you !!!! <span class="pet-name">Goldfish</span>! 🥺💕</h2>
+        <p style="color: #d70040; font-weight: bold; margin-bottom: 20px;">This is for you! 👇</p>
+        <div style="margin: 10px 0;">
             <iframe width="280" height="500" 
                 src="https://www.youtube.com/embed/2lH6x5zn0GI" 
                 title="Our Song" 
