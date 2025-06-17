@@ -51,8 +51,8 @@
         .page8 { background: linear-gradient(135deg, #ff90c5 0%, #ff65ae 100%); }
 
         h1, h2 {
-            color: #ff1493;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            color: #d70040;
+            text-shadow: 2px 2px 0px white, 4px 4px 8px rgba(0,0,0,0.3);
             margin-bottom: 20px;
             animation: bounceIn 1s ease;
         }
@@ -104,9 +104,10 @@
         p {
             font-size: 1.2rem;
             line-height: 1.8;
-            color: #444;
+            color: #2c2c2c;
             margin: 15px 0;
-            font-weight: 500;
+            font-weight: 600;
+            text-shadow: 1px 1px 0px white;
         }
 
         .next-btn {
@@ -314,7 +315,7 @@
         <h1>Hey <span class="pet-name">Goldfish</span>! 🥺</h1>
         <h2>You Sad?</h2>
         <div class="gif-container">
-            <img src="https://media1.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Car coming">
+            <img src="https://media.giphy.com/media/EvYHHSntaIl5m/giphy.gif" alt="Cute cat in car">
         </div>
         <p>Don't worry! Your friend <span class="pet-name">Monkey</span> is racing to Janakpuri! 🚗💨</p>
         <button class="next-btn" onclick="nextPage(2)">Here I Come! →</button>
@@ -334,11 +335,12 @@
         
         <h2>Time for the BIGGEST hug! 🤗</h2>
         <div class="gif-container">
-            <img src="https://media0.giphy.com/media/l8ooOxhcItowwLPuZn/giphy.gif" alt="Big hug">
+            <img src="https://media.giphy.com/media/llmZp6fCVb4ju/giphy.gif" alt="Cute bear hug">
         </div>
         <p><span class="pet-name">Monkey</span> brought special treats for <span class="pet-name">Goldfish</span>!</p>
         <div class="emoji-giant">🍫 🌹</div>
         <p>Milkybar & Flowers! Because you're the sweetest! 💝</p>
+        <p style="color: #d70040; font-weight: bold;">I believe in you! You're the strongest! 💪</p>
         <button class="next-btn" onclick="nextPage(3)">Aww Thanks! →</button>
     </div>
 
@@ -370,10 +372,13 @@
         
         <h2>Surprise! Your favorite! 🥟</h2>
         <div class="gif-container">
-            <img src="https://media4.giphy.com/media/l2SpXaJA67JaSqSxq/giphy.gif" alt="Yummy food">
+            <img src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif" alt="Cute eating">
         </div>
         <p><span class="pet-name">Monkey</span> knows what makes <span class="pet-name">Goldfish</span> happy!</p>
         <p>Chinese food time! 🍜🥢</p>
+        <div class="quote-bubble">
+            <p>I trust you completely! You're the most important! ❤️</p>
+        </div>
         <button class="next-btn" onclick="nextPage(5)">Yummy! →</button>
     </div>
 
@@ -387,12 +392,13 @@
         <h1>Hey <span class="pet-name">Goldfish</span>!</h1>
         <h2>YOU ROCK! 🎸✨</h2>
         <div class="gif-container">
-            <img src="https://media1.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif" alt="You're awesome">
+            <img src="https://media.giphy.com/media/kyLYXonQYYfwYDIeZl/giphy.gif" alt="You're awesome celebration">
         </div>
         <div class="quote-bubble">
             <p>"It's just a bad day! Tomorrow you can do it!"</p>
         </div>
         <p><span class="pet-name">Monkey</span> believes in you! 💪💕</p>
+        <p style="color: #d70040; font-weight: bold;">Never feel down! You're amazing! 🌟</p>
         <button class="next-btn" onclick="nextPage(6)">Thank You! →</button>
     </div>
 
@@ -442,12 +448,23 @@
         
         <h2>Oh wait... one more thing! 😅</h2>
         <div class="gif-container">
-            <img src="https://media0.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" alt="Puppy sorry">
+            <img src="https://media.giphy.com/media/M90mJvfWfd5mbUuULX/giphy.gif" alt="Cute puppy sorry">
         </div>
         <p><span class="pet-name">Monkey</span> forgot to remind <span class="pet-name">Goldfish</span> for lunch! 🍱</p>
         <p>I promise I'll set 100 alarms next time! ⏰</p>
         <div class="emoji-giant">💕</div>
-        <p style="font-size: 1.5rem; color: #ff1493;">Love you, <span class="pet-name">Goldfish</span>! 🐠💕</p>
+        <p style="font-size: 1.5rem; color: #d70040; font-weight: bold;">Love you, <span class="pet-name">Goldfish</span>! 🐠💕</p>
+        <div style="margin: 20px 0;">
+            <p style="color: #d70040; font-weight: bold;">Watch this! It's us! 👇</p>
+            <iframe width="280" height="500" 
+                src="https://www.youtube.com/embed/2lH6x5zn0GI" 
+                title="Our Song" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            </iframe>
+        </div>
         <button class="next-btn" onclick="restart()">Start Again! 💕</button>
     </div>
 
