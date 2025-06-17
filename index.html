@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hey Goldfish! 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.8s ease;
+            overflow: hidden;
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .page1 { background: linear-gradient(135deg, #ffeef8 0%, #ffc0e0 100%); }
+        .page2 { background: linear-gradient(135deg, #ffe0f0 0%, #ffb3d9 100%); }
+        .page3 { background: linear-gradient(135deg, #ffd1e8 0%, #ffa6d1 100%); }
+        .page4 { background: linear-gradient(135deg, #ffc4e1 0%, #ff99ca 100%); }
+        .page5 { background: linear-gradient(135deg, #ffb7da 0%, #ff8cc3 100%); }
+        .page6 { background: linear-gradient(135deg, #ffaad3 0%, #ff7fbc 100%); }
+        .page7 { background: linear-gradient(135deg, #ff9dcc 0%, #ff72b5 100%); }
+        .page8 { background: linear-gradient(135deg, #ff90c5 0%, #ff65ae 100%); }
+
+        h1, h2 {
+            color: #ff1493;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            animation: bounceIn 1s ease;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+
+        .pet-name {
+            color: #ff69b4;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-decoration: underline wavy;
+            animation: shimmer 2s ease infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .gif-container {
+            width: 280px;
+            height: 280px;
+            margin: 20px auto;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border: 5px solid white;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #444;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(255,105,180,0.4);
+            animation: pulse 2s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .next-btn:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Decorative elements */
+        .balloon {
+            position: absolute;
+            width: 80px;
+            height: 100px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: floatUp 15s ease-in-out infinite;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: rgba(0,0,0,0.2);
+            left: 50%;
+            bottom: -100px;
+            transform: translateX(-50%);
+        }
+
+        .balloon1 { background: #ff69b4; left: 10%; animation-delay: 0s; }
+        .balloon2 { background: #ff1493; left: 30%; animation-delay: 2s; }
+        .balloon3 { background: #ffb6c1; left: 50%; animation-delay: 4s; }
+        .balloon4 { background: #ffc0cb; left: 70%; animation-delay: 6s; }
+        .balloon5 { background: #ff69b4; left: 90%; animation-delay: 8s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(-20deg); }
+            50% { transform: translateY(-50vh) rotate(20deg); }
+            100% { transform: translateY(100vh) rotate(-20deg); }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ff69b4;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .sparkle1 { top: 20%; left: 15%; animation-delay: 0s; }
+        .sparkle2 { top: 30%; right: 20%; animation-delay: 1s; }
+        .sparkle3 { bottom: 30%; left: 25%; animation-delay: 2s; }
+        .sparkle4 { top: 40%; right: 15%; animation-delay: 1.5s; }
+
+        .quote-bubble {
+            background: white;
+            padding: 25px 35px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            position: relative;
+            animation: wobble 2s ease-in-out infinite;
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .quote-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid white;
+        }
+
+        .emoji-giant {
+            font-size: 4rem;
+            display: inline-block;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .final-question {
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 20px 60px rgba(255,105,180,0.3); }
+            50% { box-shadow: 0 20px 80px rgba(255,105,180,0.5); }
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            font-size: 1.3rem;
+            padding: 18px 50px;
+            margin: 10px;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(76,175,80,0.3);
+            animation: jump 1.5s ease infinite;
+        }
+
+        @keyframes jump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hearts-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: rgba(255,105,180,0.3);
+            font-size: 20px;
+            animation: heartFloat 8s linear infinite;
+        }
+
+        @keyframes heartFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* iPhone 15 specific */
+        @media screen and (max-width: 430px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.7rem; }
+            p { font-size: 1.1rem; }
+            .gif-container { width: 250px; height: 250px; }
+        }
+
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .page {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: You Sad? -->
+    <div class="page page1 active" id="page1">
+        <div class="balloon balloon1"></div>
+        <div class="balloon balloon2"></div>
+        <div class="sparkle sparkle1">✨</div>
+        <div class="sparkle sparkle2">⭐</div>
+        
+        <h1>Hey <span class="pet-name">Goldfish</span>! 🥺</h1>
+        <h2>You Sad?</h2>
+        <div class="gif-container">
+            <img src="https://media1.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Car coming">
+        </div>
+        <p>Don't worry! Your friend <span class="pet-name">Monkey</span> is racing to Janakpuri! 🚗💨</p>
+        <button class="next-btn" onclick="nextPage(2)">Here I Come! →</button>
+    </div>
+
+    <!-- Page 2: Big Hug -->
+    <div class="page page2" id="page2">
+        <div class="balloon balloon3"></div>
+        <div class="balloon balloon4"></div>
+        <div class="hearts-bg">
+            <div class="heart-float" style="left: 10%; animation-delay: 0s;">💕</div>
+            <div class="heart-float" style="left: 30%; animation-delay: 2s;">💖</div>
+            <div class="heart-float" style="left: 50%; animation-delay: 4s;">💕</div>
+            <div class="heart-float" style="left: 70%; animation-delay: 6s;">💖</div>
+            <div class="heart-float" style="left: 90%; animation-delay: 8s;">💕</div>
+        </div>
+        
+        <h2>Time for the BIGGEST hug! 🤗</h2>
+        <div class="gif-container">
+            <img src="https://media0.giphy.com/media/l8ooOxhcItowwLPuZn/giphy.gif" alt="Big hug">
+        </div>
+        <p><span class="pet-name">Monkey</span> brought special treats for <span class="pet-name">Goldfish</span>!</p>
+        <div class="emoji-giant">🍫 🌹</div>
+        <p>Milkybar & Flowers! Because you're the sweetest! 💝</p>
+        <button class="next-btn" onclick="nextPage(3)">Aww Thanks! →</button>
+    </div>
+
+    <!-- Page 3: Head Pat -->
+    <div class="page page3" id="page3">
+        <div class="sparkle sparkle3">🌟</div>
+        <div class="sparkle sparkle4">✨</div>
+        <div class="balloon balloon5"></div>
+        
+        <h2>*Pat Pat Pat* 🤚</h2>
+        <div class="gif-container">
+            <img src="https://media2.giphy.com/media/ARSp9T7wwxNcs/giphy.gif" alt="Head pat">
+        </div>
+        <div class="quote-bubble">
+            <p>Everything will be okay, <span class="pet-name">Goldfish</span>! 💕</p>
+        </div>
+        <p><span class="pet-name">Monkey</span> is here now! 🐒</p>
+        <button class="next-btn" onclick="nextPage(4)">I Feel Better! →</button>
+    </div>
+
+    <!-- Page 4: Chinese Food -->
+    <div class="page page4" id="page4">
+        <div class="hearts-bg">
+            <div class="heart-float" style="left: 20%; animation-delay: 1s;">🥟</div>
+            <div class="heart-float" style="left: 40%; animation-delay: 3s;">🍜</div>
+            <div class="heart-float" style="left: 60%; animation-delay: 5s;">🥢</div>
+            <div class="heart-float" style="left: 80%; animation-delay: 7s;">🥡</div>
+        </div>
+        
+        <h2>Surprise! Your favorite! 🥟</h2>
+        <div class="gif-container">
+            <img src="https://media4.giphy.com/media/l2SpXaJA67JaSqSxq/giphy.gif" alt="Yummy food">
+        </div>
+        <p><span class="pet-name">Monkey</span> knows what makes <span class="pet-name">Goldfish</span> happy!</p>
+        <p>Chinese food time! 🍜🥢</p>
+        <button class="next-btn" onclick="nextPage(5)">Yummy! →</button>
+    </div>
+
+    <!-- Page 5: Motivation -->
+    <div class="page page5" id="page5">
+        <div class="balloon balloon1"></div>
+        <div class="balloon balloon2"></div>
+        <div class="sparkle sparkle1">💫</div>
+        <div class="sparkle sparkle2">⭐</div>
+        
+        <h1>Hey <span class="pet-name">Goldfish</span>!</h1>
+        <h2>YOU ROCK! 🎸✨</h2>
+        <div class="gif-container">
+            <img src="https://media1.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif" alt="You're awesome">
+        </div>
+        <div class="quote-bubble">
+            <p>"It's just a bad day! Tomorrow you can do it!"</p>
+        </div>
+        <p><span class="pet-name">Monkey</span> believes in you! 💪💕</p>
+        <button class="next-btn" onclick="nextPage(6)">Thank You! →</button>
+    </div>
+
+    <!-- Page 6: Dinner Question -->
+    <div class="page page6" id="page6">
+        <div class="hearts-bg">
+            <div class="heart-float" style="left: 15%; animation-delay: 0.5s;">💕</div>
+            <div class="heart-float" style="left: 35%; animation-delay: 2.5s;">💖</div>
+            <div class="heart-float" style="left: 55%; animation-delay: 4.5s;">💕</div>
+            <div class="heart-float" style="left: 75%; animation-delay: 6.5s;">💖</div>
+        </div>
+        
+        <div class="final-question">
+            <h2>So... <span class="pet-name">Goldfish</span>... 🥺</h2>
+            <p>Since you didn't let <span class="pet-name">Monkey</span> come today...</p>
+            <p style="font-size: 1.5rem; color: #ff1493; margin: 30px 0;">
+                Dinner on Monday? 🍽️✨
+            </p>
+            <button class="yes-btn" onclick="showYes()">YES! 😍</button>
+            <button class="yes-btn" onclick="showYes()">ABSOLUTELY YES! 💕</button>
+        </div>
+    </div>
+
+    <!-- Page 7: Naraz -->
+    <div class="page page7" id="page7">
+        <div class="balloon balloon3"></div>
+        <div class="sparkle sparkle3">😤</div>
+        
+        <h2><span class="pet-name">Monkey</span> will be naraz! 😤</h2>
+        <p>Why didn't <span class="pet-name">Goldfish</span> call me?? 📱</p>
+        <div class="gif-container">
+            <img src="https://media3.giphy.com/media/11tTNkNy1SdXGg/giphy.gif" alt="Angry cute">
+        </div>
+        <p style="font-size: 1.5rem;">Pitai hogi! 🗡️😤</p>
+        <p style="margin-top: 20px; color: #999;">(Just kidding! But seriously, call me! 🥺)</p>
+        <button class="next-btn" onclick="nextPage(8)">Sorry! →</button>
+    </div>
+
+    <!-- Page 8: Sorry -->
+    <div class="page page8" id="page8">
+        <div class="hearts-bg">
+            <div class="heart-float" style="left: 20%; animation-delay: 1s;">💕</div>
+            <div class="heart-float" style="left: 40%; animation-delay: 3s;">💖</div>
+            <div class="heart-float" style="left: 60%; animation-delay: 5s;">💕</div>
+            <div class="heart-float" style="left: 80%; animation-delay: 7s;">💖</div>
+        </div>
+        
+        <h2>Oh wait... one more thing! 😅</h2>
+        <div class="gif-container">
+            <img src="https://media0.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" alt="Puppy sorry">
+        </div>
+        <p><span class="pet-name">Monkey</span> forgot to remind <span class="pet-name">Goldfish</span> for lunch! 🍱</p>
+        <p>I promise I'll set 100 alarms next time! ⏰</p>
+        <div class="emoji-giant">💕</div>
+        <p style="font-size: 1.5rem; color: #ff1493;">Love you, <span class="pet-name">Goldfish</span>! 🐠💕</p>
+        <button class="next-btn" onclick="restart()">Start Again! 💕</button>
+    </div>
+
+    <script>
+        let currentPage = 1;
+
+        function nextPage(pageNum) {
+            document.getElementById(`page${currentPage}`).classList.remove('active');
+            document.getElementById(`page${pageNum}`).classList.add('active');
+            currentPage = pageNum;
+            
+            // Add floating hearts on page transition
+            createFloatingHearts();
+        }
+
+        function showYes() {
+            alert('Yayyyy! Monday dinner with Goldfish! 🎉💕 Monkey is so happy!');
+            nextPage(7);
+        }
+
+        function restart() {
+            document.getElementById(`page${currentPage}`).classList.remove('active');
+            document.getElementById('page1').classList.add('active');
+            currentPage = 1;
+        }
+
+        function createFloatingHearts() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💕';
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.bottom = '-50px';
+                    heart.style.fontSize = '30px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '9999';
+                    heart.style.animation = 'floatUpQuick 3s ease-out forwards';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 200);
+            }
+        }
+
+        // Add floating hearts animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUpQuick {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Click anywhere to create hearts (except buttons)
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName !== 'BUTTON') {
+                const heart = document.createElement('div');
+                heart.innerHTML = ['💕', '💖', '💗', '💝'][Math.floor(Math.random() * 4)];
+                heart.style.position = 'fixed';
+                heart.style.left = e.clientX + 'px';
+                heart.style.top = e.clientY + 'px';
+                heart.style.fontSize = '40px';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = 'floatUpQuick 2s ease-out forwards';
+                heart.style.zIndex = '9999';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 2000);
+            }
+        });
+    </script>
+</body>
+</html>
